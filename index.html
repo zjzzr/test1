@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>追光者</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				/*width: 100%;*/
+				height: 100vh;
+				overflow: hidden;
+				font-family: "微软雅黑";
+				font-size: 14px;
+				color: #888;
+				background-image: url(img/夏至未至.jpg);
+				background-size: 100%;
+				background-position: center center;
+				background-repeat: no-repeat;
+				margin: 0;
+				position: relative;
+			}
+			h2{
+				color: #ccc;
+				font-size: 18px;
+				margin: 50px auto 0;
+				text-align: center;
+				height: 80px;
+				animation:hmation 5s;
+				perspective: 1000px;
+				letter-spacing: 3px;
+			}
+			.author{
+				font-size: 12px;
+				font-weight: 300;
+				text-align: right;
+				margin:30px 0 0 50px;
+			}
+			p{
+				color: inherit;
+				text-indent: 2em;
+				line-height: 30px;
+				text-align: center;
+				/*display: block;*/
+				animation:myfirst 20s infinite;
+				transition: .5s;
+				-webkit-user-select:none;/*取消文字选中*/ 
+			}
+			p:hover{
+				color: #fff;
+				transition: .5s;
+			}
+            .box{
+            	position: absolute;
+            	height: 100%;
+            	width: 100%;
+                top: 0;
+                left: 0;
+                background-color: rgba(0,0,0,.6);
+            }
+			@keyframes hmation{
+				0%{transition: .5s;color: #ccc;}
+				50%{transition: .5s;color: #f8f8f8;}
+				100%{transition: .5s;color: #fff;}
+			}
+			/*p的动画效果*/
+			@keyframes myfirst{
+              0% {transition: .5s;color: inherit;}
+              10%{transition: .5s;color: #00FF7F;}
+              20%{transition: .5s;color: #FFD700;}
+              30%{transition: .5s;color: #FF6347;}
+              40%{transition: .5s;color: #6495ED;}
+              50%{transition: .5s;color: #9932CC;}
+              60%{transition: .5s;color: #FF00FF;}
+              70%{transition: .5s;color: #FF1493;}
+              80%{transition: .5s;color: #7BAABE;}
+              90%{transition: .5s;color: #f90;}
+              100%{transition: .5s;color: #fff;}
+            }
+            /*无缝滚动*/
+           .zuiwaiceng{
+  			  width: 200px;
+  			  height: 400px;
+           	  position: relative;
+           	  overflow: hidden;
+           }
+            .wufeng{
+           	  position: absolute;
+           	  left: 0;
+              top: 0;
+            }
+            
+        
+            /*滚动条的样式*/
+           .test {
+				margin: 5px;
+				border: none;
+			}
+			
+			.scrollbar {
+				width: 30px;
+				height: 300px;
+				margin: 0 auto;
+			}
+			
+			.test-1::-webkit-scrollbar {
+				/*滚动条整体样式*/
+				width: 20px;
+				/*高宽分别对应横竖滚动条的尺寸*/
+				height: 1px;
+			}
+			
+			.test-1::-webkit-scrollbar-thumb {
+				/*滚动条里面小方块*/
+				border-radius:20px 13px 20px 13px;
+                -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+                background: rgba(255,255,255,.3);
+                border: 1px solid #fff;
+                /*box-shadow: 1px 2px 8px -3px;*/
+                box-shadow: 0px 0px 10px #fff;
+                border-bottom: 2px solid #fff;
+			}
+			
+			.test-1::-webkit-scrollbar-track {
+				/*滚动条里面轨道*/
+				border-radius: 20px 13px 20px 13px;
+                -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+				background: rgba(255,255,255,.1);
+                border: 1px solid #fff;
+                /*box-shadow: 1px 2px 8px -3px;*/
+               box-shadow: 0px 0px 10px #fff;
+			}
+			
+			/*播放音乐区*/
+			.fixed-left {
+				position: fixed;
+				left: 0;
+				top: 0;
+				z-index: 300;
+				float: left;
+				width: 150px;
+				height: 56px;
+				border: 1px solid hsla(0, 0%, 100%, .5);
+				background: hsla(0, 0%, 100%, .4);
+				border-radius: 10px;
+				flex: 0 0 150px;
+				margin: 25px 50px 0;
+			}
+			.fixed-left i img{
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				display: inline-block;
+				float: left;
+				margin: 8px 12px 0 20px;
+				transition: .5s;
+			}
+
+			.fixed-left i img:hover{
+				color: aqua;
+				box-shadow: 1px 1px 26px 2px;
+				transition: .5s;
+			}
+
+			.dong{
+				animation: circle 6s infinite linear;
+			}
+
+			@keyframes circle{
+				0% {
+					transform: rotate(0deg)
+				}
+				100% {
+					transform: rotate(360deg)
+				}
+			}
+            .fixed-left span {
+            	color: white;
+	            font-size: 14px;
+	            line-height: 58px;
+	            float: left;
+	            display: inline-block;
+            }
+            .pause {
+	            animation-play-state: paused;
+            }
+
+            .run {
+	            animation-play-state: running;
+            }
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="fixed-left">
+				<i class="play btn" onclick="toggle()"><img src="img/muise.jpg" alt="" class="music-img dong"></i>
+				<span>·Mr.Zhang</span>
+				<!----------------- 播放区域开始 ----------------- >-->
+				<audio class="musics" src="audio/岑宁儿-追光者.mp3" loop="loop" autoplay="autoplay"></audio>
+				<!----------------- 播放区域结束 ----------------- >-->
+			</div>
+			<h2 class="flip" style="text-align: center;margin: 30px auto 20px;text-shadow: 0 4px 3px rgba(0, 0, 0, 0.4), 0 8px 13px rgba(0, 0, 0, 0.1), 0 18px 23px rgba(0, 0, 0, 0.1);">
+				追光者
+				<br />
+			   <span class="author">作者：**</span>
+			</h2>
+		    <!--<h3 class='skill'>
+			   追光者
+			   <br />
+			   <span class="author">作者：**</span>
+		    </h3>-->
+		    <div class="zuiwaiceng test test-1 scrollbar" style="overflow-y: scroll;height:80%;width:20%;margin: 0 auto;">
+		    	<div class="wufeng">
+		    		<div class="gundong">
+			    		<p>如果说你是海上的烟火</p>
+				        <p>我是浪花的泡沫</p>
+				        <p>某一刻你的光照亮了我</p>
+				        <p>如果说你是遥远的星河</p>
+				        <p>耀眼得让人想哭</p>
+				        <p>我是追逐着你的眼眸</p>
+				        <p>总在孤单时候眺望夜空</p>
+						 <p>我可以跟在你身后</p>
+				 		<p>像影子追着光梦游</p>
+				 		<p>我可以等在这路口</p>
+				 		<p>不管你会不会经过</p>
+				 		<p>每当我为你抬起头</p>
+				 		<p>连眼泪都觉得自由</p>
+				 		<p>有的爱像阳光倾落边拥有边失去着</p>
+				 		<p>如果说你是夏夜的萤火</p>
+				 		<p>孩子们为你唱歌</p>
+				 		<p>那么我是想要画你的手</p>
+				 		<p>你看我多么渺小一个我</p>
+				 		<p>因为你有梦可做</p>
+				 		<p>也许你不会为我停留</p>
+				 		<p>那就让我站在你的背后</p>
+				 		<p>我可以跟在你身后</p>
+				 		<p>像影子追着光梦游</p>
+				 		<p>我可以等在这路口</p>
+				 		<p>不管你会不会经过</p>
+				 		<p>每当我为你抬起头</p>
+				 		<p>连连眼泪都觉得自由眼泪都觉得自由</p>
+				 		<p>有的爱像大雨滂沱却依然相信彩虹</p>
+				 		<p>我可以跟在你身后</p>
+				 		<p>像影子追着光梦游</p>
+				 		<p>我可以等在这路口</p>
+				 		<p>不管你会不会经过</p>
+				 		<p>每当我为你抬起头</p>
+				 		<p>连眼泪都觉得自由</p>
+				 		<p>有的爱像大雨滂沱却依然相信彩虹</p>
+			    	</div>
+		    	</div>
+		    </div>
+		</div>
+		<script src="js/index2.js"></script>
+		<script src="js/jquery-3.3.1.js"></script>
+		<script src="鼠标点击文字/click-effect2.js"></script>
+		<script>
+			$(function () {
+				var $olo = {
+					'zWC':$(".zuiwaiceng"),
+					'wuFeng':$(".wufeng"),
+					'gunDong':$(".gundong"),
+					"Top":0,
+				}
+				$olo.wuFeng.append($olo.gunDong.clone(true));
+				function setTime(){
+					$olo.Top --;
+					if($olo.gunDong.height() <= -$olo.Top){
+						$olo.Top = 0;
+					}
+					$olo.wuFeng.css({
+						top:$olo.Top + 'px'
+					})
+				}
+				var time = setInterval(setTime,50);
+        		$olo.zWC.hover(function () {
+           			clearInterval(time);
+       			},function () {
+            		time = setInterval(setTime,50);
+        		})
+			})
+			/*//音乐播放
+		    var aMusic = document.getElementsByClassName('musics')[0];
+		    var boo = true;
+			window.onload = function(){
+			    console.log(1);
+		        aMusic.play();
+		        toggle()
+			};
+			//函数的关键字    函数的名字
+			function toggle(){
+				console.log(1)
+				var music = document.getElementsByClassName('music-img')[0];
+				if(boo){
+			    	music.classList.add('run');
+					aMusic.play();
+					boo = false
+				}else{
+			        music.classList.remove('run');
+			   		music.classList.add('pause');
+					aMusic.pause();
+					boo = true
+				}
+			}*/
+		</script>
+	</body>
+</html>
